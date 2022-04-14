@@ -42,7 +42,7 @@ int main() {
     });
 
     auto buttons_container = Container::Horizontal({
-        Button(" Add Task ", [&] { task_vector.push_back(task_str); }, ButtonOption::Simple()),
+        Button(" Add Task ", [&] { task_vector.push_back(task_str); task_str = ""; }, ButtonOption::Simple()),
         Button(" Quit ", screen.ExitLoopClosure(), ButtonOption::Simple()),
     });
 
