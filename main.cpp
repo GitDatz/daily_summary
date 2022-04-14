@@ -1,6 +1,8 @@
+#include <ctime>
+#include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <string>
-#include <vector>
 
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/dom/table.hpp>
@@ -8,9 +10,17 @@
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
 
-using namespace ftxui;
+const std::string get_current_date_string() {
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::ostringstream oss;
+    oss << std::put_time(&tm, " %A %e of %B %Y");
+    return oss.str();
+}
 
 int main() {
+    using namespace ftxui;
+
     std::string task_str;
     auto screen = ScreenInteractive::TerminalOutput();
  
@@ -18,7 +28,8 @@ int main() {
 
     auto header_component = Renderer([&] {
         return vbox({
-                text(" Daily Summary"),
+                text(" Daily Summary") | bold,
+                text(get_current_date_string()),
                 separator(),
             });
     });
