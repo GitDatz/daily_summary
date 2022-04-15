@@ -1,4 +1,5 @@
 #include <ctime>
+#include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
@@ -10,6 +11,8 @@
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
 
+const std::string FILE_PATH = "../tasks.txt";
+
 const std::string get_current_date_string() {
     auto t = std::time(nullptr);
     auto tm = *std::localtime(&t);
@@ -18,11 +21,22 @@ const std::string get_current_date_string() {
     return oss.str();
 }
 
+const std::vector<std::string> get_task_vector() {
+    std::vector<std::string> string_vector;
+    std::ifstream file(FILE_PATH);
+    if (file) {
+        for ( std::string line; std::getline(file, line); ) {
+            string_vector.push_back(line);
+        }
+    }
+    return string_vector;
+}
+
 int main() {
     using namespace ftxui;
 
     std::string task_str;
-    std::vector<std::string> task_vector;
+    auto task_vector = get_task_vector();
     int selected_task = 0;
 
     auto screen = ScreenInteractive::TerminalOutput();
