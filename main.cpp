@@ -32,6 +32,10 @@ const std::vector<std::string> get_task_vector() {
     return string_vector;
 }
 
+void save_to_file() {
+    
+}
+
 int main() {
     using namespace ftxui;
 
@@ -41,7 +45,9 @@ int main() {
 
     auto screen = ScreenInteractive::TerminalOutput();
  
-    Component task_input = Input(&task_str, "Task");
+    InputOption input_option;
+    input_option.on_enter = [&] { task_vector.push_back(task_str); task_str = ""; };
+    Component task_input = Input(&task_str, "Task", &input_option);
 
     auto header_component = Renderer([&] {
         return vbox({
@@ -60,9 +66,9 @@ int main() {
         Button(" Quit ", screen.ExitLoopClosure(), ButtonOption::Simple()),
     });
 
-    MenuOption option;
-    option.on_enter = [&] { task_vector.erase(task_vector.begin() + selected_task); };
-    auto menu = Menu(&task_vector, &selected_task, &option) | border;
+    MenuOption menu_option;
+    menu_option.on_enter = [&] { task_vector.erase(task_vector.begin() + selected_task); };
+    auto menu = Menu(&task_vector, &selected_task, &menu_option) | border;
 
     screen.Loop(Container::Vertical({
         header_component,
