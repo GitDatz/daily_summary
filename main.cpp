@@ -32,8 +32,13 @@ const std::vector<std::string> get_task_vector() {
     return string_vector;
 }
 
-void save_to_file() {
-    
+void save_to_file(const std::vector<std::string>& string_vector) {
+    std::ofstream file;
+    file.open(FILE_PATH);
+    for ( auto task : string_vector ) {
+        file << task << std::endl;
+    }
+    file.close();
 }
 
 int main() {
@@ -62,7 +67,7 @@ int main() {
     });
 
     auto buttons_container = Container::Horizontal({
-        Button(" Add Task ", [&] { task_vector.push_back(task_str); task_str = ""; }, ButtonOption::Simple()),
+        Button(" Save to File ", [&] { save_to_file(task_vector); }, ButtonOption::Simple()),
         Button(" Quit ", screen.ExitLoopClosure(), ButtonOption::Simple()),
     });
 
