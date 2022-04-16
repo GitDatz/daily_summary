@@ -10,6 +10,7 @@ namespace model {
 
 Data::Data()
 {
+    FetchCurrentDate();
     ReadFromFile();
 }
 
