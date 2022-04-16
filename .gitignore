@@ -1,2 +1,8 @@
 # Build catalog
 /build
+
+# VS Code specific
+/.vscode
+
+# Task file
+tasks.txt
