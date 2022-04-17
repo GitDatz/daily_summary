@@ -24,6 +24,9 @@ project(DailySummary)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+enable_testing()
+add_subdirectory(test)
+
 # Add the executable
 add_executable(DailySummary src/main.cpp src/controller/Controller.cpp src/model/Data.cpp src/view/View.cpp)
 
