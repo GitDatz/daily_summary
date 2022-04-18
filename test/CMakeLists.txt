@@ -8,9 +8,9 @@ FetchContent_MakeAvailable(googletest)
 add_library(GTest::GTest INTERFACE IMPORTED)
 target_link_libraries(GTest::GTest INTERFACE gtest_main)
 
-add_executable(DailySummaryTest DataTest.cpp)
+add_executable(DailySummaryTest DataTest.cpp ../src/model/Data.cpp)
 
 target_link_libraries(DailySummaryTest
  PRIVATE GTest::GTest)
 
-add_test(daily_summary_gtests DailySummaryTest)
+add_test(DataTests DailySummaryTest)
