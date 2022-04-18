@@ -49,9 +49,3 @@ TEST_F(DataTest, DeleteTaskTest)
         INITIAL_NUMBER_OF_TASKS - NUMBER_OF_DELETED_TASKS;
     ASSERT_EQ(mData->GetTaskVector().size(), FINAL_NUMBER_OF_TASKS);
 }
-
-int main(int argc, char** argv)
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}

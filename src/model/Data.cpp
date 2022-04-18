@@ -5,11 +5,19 @@
 
 namespace model {
 
+Data::Data()
+: mDateString("")
+{
+    ReadFromFile();
+}
+
 Data::Data(const std::string _dateString)
 : mDateString(_dateString)
 {
     ReadFromFile();
 }
+
+Data::~Data() {}
 
 void Data::AddTask(const std::string _task)
 {

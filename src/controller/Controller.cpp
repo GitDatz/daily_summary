@@ -5,8 +5,8 @@
 
 namespace controller {
 
-Controller::Controller(const model::Data& _data)
-: mData(std::make_unique<model::Data>(_data))
+Controller::Controller(std::unique_ptr<model::Data> _data)
+: mData(std::move(_data))
 {
 }
 

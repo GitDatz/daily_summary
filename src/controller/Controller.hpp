@@ -3,6 +3,7 @@
 
 #include "../model/Data.hpp"
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
@@ -12,7 +13,7 @@ namespace controller {
 class Controller
 {
 public:
-    Controller(const model::Data&);
+    Controller(std::unique_ptr<model::Data>);
     void AddTask(const std::string);
     void DeleteTask(const int);
     const std::string GetDateString();

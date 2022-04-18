@@ -9,12 +9,14 @@ namespace model {
 class Data
 {
 public:
+    Data();
     Data(const std::string _dateString);
-    void AddTask(const std::string _task);
-    void DeleteTask(const int _index);
-    const std::string GetDateString();
-    std::vector<std::string>& GetTaskVector();
-    void SaveToFile();
+    virtual ~Data();
+    virtual void AddTask(const std::string _task);
+    virtual void DeleteTask(const int _index);
+    virtual const std::string GetDateString();
+    virtual std::vector<std::string>& GetTaskVector();
+    virtual void SaveToFile();
 private:
     void ReadFromFile();
     const std::string FILE_PATH = "../tasks.txt";

@@ -21,8 +21,8 @@ const std::string get_current_date_string()
 }
 
 int main() {
-    auto data = new model::Data(get_current_date_string());
-    auto controller = new controller::Controller(*data);
+    auto data = std::make_unique<model::Data>(get_current_date_string());
+    auto controller = new controller::Controller(std::move(data));
     
     std::function<void(const std::string)> add_task_func =
         [&] (const std::string task_to_add) { controller->AddTask(task_to_add); };
