@@ -1,3 +1,4 @@
+#include "../src/model/Data.hpp"
 #include <gtest/gtest.h>
 
 TEST(DataTests, DummyDataTest)

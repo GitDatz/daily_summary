@@ -30,6 +30,8 @@ add_subdirectory(test)
 # Add the executable
 add_executable(DailySummary src/main.cpp src/controller/Controller.cpp src/model/Data.cpp src/view/View.cpp)
 
+target_include_directories(DailySummary PRIVATE "${PROJECT_SOURCE_DIR}")
+
 # Link the libraries
 target_link_libraries(DailySummary
   PRIVATE ftxui::screen
