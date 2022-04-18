@@ -1,16 +1,13 @@
 #include "Data.hpp"
 
-#include <ctime>
 #include <fstream>
-#include <iomanip>
 #include <iostream>
-#include <sstream>
 
 namespace model {
 
-Data::Data()
+Data::Data(const std::string _dateString)
+: mDateString(_dateString)
 {
-    FetchCurrentDate();
     ReadFromFile();
 }
 
@@ -22,15 +19,6 @@ void Data::AddTask(const std::string _task)
 void Data::DeleteTask(const int _index)
 {
     mTaskVector.erase(mTaskVector.begin() + _index);
-}
-
-void Data::FetchCurrentDate()
-{
-    auto t = std::time(nullptr);
-    auto tm = *std::localtime(&t);
-    std::ostringstream oss;
-    oss << std::put_time(&tm, " %A %e of %B %Y");
-    mDateString = oss.str();
 }
 
 const std::string Data::GetDateString()

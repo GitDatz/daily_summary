@@ -5,11 +5,23 @@
 #include <ftxui/component/component.hpp>
 #include <ftxui/component/screen_interactive.hpp>
 
+#include <ctime>
 #include <functional>
+#include <iomanip>
 #include <string>
+#include <sstream>
+
+const std::string get_current_date_string()
+{
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::ostringstream oss;
+    oss << std::put_time(&tm, " %A %e of %B %Y");
+    return oss.str();
+}
 
 int main() {
-    auto data = new model::Data();
+    auto data = new model::Data(get_current_date_string());
     auto controller = new controller::Controller(*data);
     
     std::function<void(const std::string)> add_task_func =
